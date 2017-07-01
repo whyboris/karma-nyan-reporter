@@ -8,6 +8,7 @@ chai.config.includeStack = true;
 chai.use(require('sinon-chai'));
 
 var assert = chai.assert;
+var expect = chai.expect;
 var eq = assert.equal;
 var ok = assert.ok;
 
@@ -36,6 +37,35 @@ describe('data/types.js test suite', function() {
     dt = rewire('../lib/data/types');
     dt.__set__('clc', clcFake);
     done();
+  });
+
+  /**
+   * Individual function tests
+   */
+
+  describe('individual functions', function() {
+    var sut, name, suites, tests;
+
+    beforeEach(function(done) {
+      name = 'suite';
+      suites = ['a', 'b', 'c'];
+      tests = [1, 2, 3];
+
+      sut = new dt.Suite(name);
+
+      sut.suites = suites;
+      sut.tests = tests;
+      done();
+    });
+
+    describe('resetCounter()', function() {
+      it('should set counter to 0', function() {
+        dt.__set__("counter", 33);
+        dt.resetCounter();
+        expect(dt.__get__("counter")).to.equal(0);
+      });
+    });
+
   });
 
   /**

@@ -75,6 +75,7 @@ describe('nyanCat.js test suite', function() {
         .returns(dataStoreInstanceFake);
 
     dataTypesFake = {
+      'resetCounter' : sinon.spy(),
       'setErrorFormatterMethod' : sinon.spy(),
       'suppressErrorHighlighting' : sinon.spy()
     };
